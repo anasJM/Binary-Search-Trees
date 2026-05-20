@@ -48,6 +48,40 @@ class Tree {
 
         return root
     }
+
+    // get the smalest in the right subtree
+    #getSuccessor(current) {
+        current = current.right
+
+        while (current !== null && current.left !== null)
+            current = current.left
+
+        return current
+    }
+
+    deleteItem(root, value) {
+        if (root === null)
+            return root
+
+        if (root.data < value) {
+            root.right = this.deleteItem(root.right, value)
+        } else if (root.data > value) {
+            root.left = this.deleteItem(root.left, value)
+        } else {
+            // Node with 0 or 1 child
+            if (root.left === null)
+                return root.right
+            if (root.right === null)
+                return root.left
+
+            // Node with 2 children
+            const successor = this.#getSuccessor(root)
+            root.data = successor.data
+            root.right = this.deleteItem(root.right, successor.data)
+        }
+
+        return root
+    }
 }
 
 export default Tree

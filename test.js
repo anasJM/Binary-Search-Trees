@@ -15,6 +15,8 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 }
 
 prettyPrint(tree.root)
-console.log(tree.includes(9)) // true
-tree.insert(tree.root, 500)
+// console.log(tree.includes(9)) // true
+// tree.insert(tree.root, 500)
+tree.deleteItem(tree.root, 67)
+
 prettyPrint(tree.root)
